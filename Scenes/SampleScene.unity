@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 3, z: 0}
-  range: {x: 2, y: 2, z: 2}
+  range: {x: 4, y: 4, z: 4}
 --- !u!1 &362927181
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,11 +691,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e0607df283a46c59102c0ac944d549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wotw1: {fileID: 627541704}
-  wotw2: {fileID: 1929009429}
-  wotw3: {fileID: 1676372318}
-  wotw4: {fileID: 320660214}
-  wotw5: {fileID: 1708540809}
+  wotw:
+  - {fileID: 627541704}
+  - {fileID: 1929009429}
+  - {fileID: 1676372318}
+  - {fileID: 320660214}
+  - {fileID: 1708540809}
 --- !u!1 &558028504
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,7 +959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 3, z: 0}
-  range: {x: 2, y: 2, z: 2}
+  range: {x: 4, y: 4, z: 4}
 --- !u!1 &1137867815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,7 +1317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 3, z: 0}
-  range: {x: 2, y: 2, z: 2}
+  range: {x: 4, y: 4, z: 4}
 --- !u!1 &1708540809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,7 +1416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 3, z: 0}
-  range: {x: 2, y: 2, z: 2}
+  range: {x: 4, y: 4, z: 4}
 --- !u!1001 &1864437254
 Prefab:
   m_ObjectHideFlags: 0
@@ -1572,7 +1573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   middle: {x: 0, y: 3, z: 0}
-  range: {x: 2, y: 2, z: 2}
+  range: {x: 4, y: 4, z: 4}
 --- !u!1 &1942698787
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,24 +3,32 @@ using System.Collections;
 
 public class DeadTree : PointNClickable
 {
-    public GameObject wotw1;
-    public GameObject wotw2;
-    public GameObject wotw3;
-    public GameObject wotw4;
-    public GameObject wotw5;
+    public GameObject[] wotw;
+
+    Vector3 rangeWOTW = new Vector3(2,2,2);
 
     public override void Interact()
     {
         Debug.Log("Interact with dead tree");
-        if (wotw1.activeSelf && wotw2.activeSelf && wotw3.activeSelf
-            && wotw4.activeSelf && wotw5.activeSelf)
+        bool isAllWOTWActive = true;
+        foreach(GameObject w in wotw)
+        {
+            if (!w.activeSelf)
+            {
+                isAllWOTWActive = false;
+                break;
+            }
+        }
+
+
+        if (isAllWOTWActive)
         {
             Debug.Log("Changed will of the wisps parent to dead tree");
-            wotw1.transform.SetParent(this.transform);
-            wotw2.transform.SetParent(this.transform);
-            wotw3.transform.SetParent(this.transform);
-            wotw4.transform.SetParent(this.transform);
-            wotw5.transform.SetParent(this.transform);
+            foreach(GameObject w in wotw)
+            {
+                w.transform.SetParent(this.transform);
+                w.GetComponent<WillOTheWisp>().range = rangeWOTW;
+            }
         }
     }
 }
