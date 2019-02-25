@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Doomsday1
   m_Shader: {fileID: 104, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION
+  m_ShaderKeywords: _EMISSION _MAPPING_LATITUDE_LONGITUDE_LAYOUT
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -74,6 +74,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 882f7c8b1e26cf642ad180554697b8e9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _UpTex:
         m_Texture: {fileID: 2800000, guid: e0bce4ac8fcbcf848939a0a710f7bf26, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -83,11 +87,15 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Exposure: 0.31
+    - _Exposure: 0.98
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _ImageType: 0
+    - _Layout: 0
+    - _Mapping: 1
     - _Metallic: 0
+    - _MirrorOnBack: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
