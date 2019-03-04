@@ -27,6 +27,8 @@ public class DeadTree : PointNClickable
             foreach(GameObject w in wotw)
             {
                 w.transform.SetParent(this.transform);
+                w.GetComponent<WillOTheWisp>().middle = transform.position;
+                w.GetComponent<WillOTheWisp>().middle.y += 1.5f;
                 w.GetComponent<WillOTheWisp>().range = rangeWOTW;
             }
         }
