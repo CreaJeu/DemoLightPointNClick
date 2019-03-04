@@ -17,7 +17,7 @@ public class WillOTheWisp : MonoBehaviour
 
     float getSpeed()
     {
-        return 20f;
+        return 10f;
     }
 
     Vector3 getPosMin()
@@ -64,7 +64,7 @@ public class WillOTheWisp : MonoBehaviour
         // changement de cible
         if (timeTillRand <= 0)
         {
-            oldTarget = transform.localPosition;
+            oldTarget = transform.position;
             rechooseTargetRd();
             // Debug.Log("changement de cible " + newTarget.x + " " + newTarget.y + " " + newTarget.z);
             timeTillRand = Vector3.Distance(oldTarget, newTarget) / getSpeed();
@@ -73,7 +73,8 @@ public class WillOTheWisp : MonoBehaviour
         }
 
         currSpeed += acceleration * dt;
-        transform.localPosition += currSpeed * dt;
+        transform.position += currSpeed * dt;
+        transform.rotation = Quaternion.identity;
         timeTillRand -= dt;
 	}
 }
