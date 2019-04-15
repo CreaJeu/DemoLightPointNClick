@@ -15,14 +15,14 @@ public class DeadTree : PointNClickable
     {
         Debug.Log("Interact with dead tree");
         bool isAllWOTWActive = true;
-        //foreach(GameObject w in wotw)
-        //{
-        //    if (!w.activeSelf)
-        //    {
-        //        isAllWOTWActive = false;
-        //        break;
-        //    }
-        //}
+        foreach(GameObject w in wotw)
+        {
+            if (!w.activeSelf)
+            {
+                isAllWOTWActive = false;
+                break;
+            }
+        }
 
 
         if (isAllWOTWActive)
