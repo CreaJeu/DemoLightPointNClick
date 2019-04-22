@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: ed38fbadf42d2f64c8f36d1187f43813
-timeCreated: 1555352740
+guid: b6c4f0248bb77f944b3ae5e05bd28d85
+timeCreated: 1555361185
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2100000: No Name
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Streetlamp
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -79,7 +85,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
