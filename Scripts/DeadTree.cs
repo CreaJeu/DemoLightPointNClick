@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DeadTree : PointNClickable
+public class DeadTree : ChangeScene
 {
     public GameObject[] wotw;
     public AnimationTransform animationTransform;
@@ -13,6 +13,7 @@ public class DeadTree : PointNClickable
 
     public override void Interact()
     {
+        base.Interact();
         Debug.Log("Interact with dead tree");
         bool isAllWOTWActive = true;
         foreach(GameObject w in wotw)
@@ -48,6 +49,7 @@ public class DeadTree : PointNClickable
             {
                 animationTransform.state = AnimationTransform.State.MOVING;
                 waitingToFall = false;
+                this.isOn = true;
             }
         }   
     }
