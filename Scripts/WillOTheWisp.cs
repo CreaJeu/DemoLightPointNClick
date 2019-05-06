@@ -11,13 +11,14 @@ public class WillOTheWisp : MonoBehaviour
 
     public Vector3 middle;
     public Vector3 range;
+    public float speed = 10.0f;
 
     private Vector3 posMin;
     private Vector3 posMax;
 
     float getSpeed()
     {
-        return 10f;
+        return speed;
     }
 
     Vector3 getPosMin()
@@ -55,6 +56,10 @@ public class WillOTheWisp : MonoBehaviour
         currSpeed = Vector3.zero;
         acceleration = Vector3.zero;
         timeTillRand = -1;
+        if(middle == Vector3.zero)
+        {
+            middle = transform.position;
+        }
 	}
 
 	// Update is called once per frame
