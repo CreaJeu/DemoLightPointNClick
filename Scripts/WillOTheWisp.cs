@@ -3,21 +3,22 @@ using System.Collections;
 
 public class WillOTheWisp : MonoBehaviour
 {
-    float timeTillRand;
-    Vector3 acceleration;
-    Vector3 currSpeed;
-    Vector3 newTarget;
-    Vector3 oldTarget;
+    protected float timeTillRand;
+    protected Vector3 acceleration;
+    protected Vector3 currSpeed;
+    protected Vector3 newTarget;
+    protected Vector3 oldTarget;
 
     public Vector3 middle;
     public Vector3 range;
+    public float speed = 10.0f;
 
-    private Vector3 posMin;
-    private Vector3 posMax;
+    protected Vector3 posMin;
+    protected Vector3 posMax;
 
-    float getSpeed()
+    protected float getSpeed()
     {
-        return 10f;
+        return speed;
     }
 
     Vector3 getPosMin()
@@ -38,7 +39,7 @@ public class WillOTheWisp : MonoBehaviour
         return posMax;
     }
 
-    void rechooseTargetRd()
+    protected void rechooseTargetRd()
     {
         float x = Random.Range(getPosMin().x, getPosMax().x);
         float y = Random.Range(getPosMin().y, getPosMax().y);
@@ -55,6 +56,10 @@ public class WillOTheWisp : MonoBehaviour
         currSpeed = Vector3.zero;
         acceleration = Vector3.zero;
         timeTillRand = -1;
+        if(middle == Vector3.zero)
+        {
+            middle = transform.position;
+        }
 	}
 
 	// Update is called once per frame
