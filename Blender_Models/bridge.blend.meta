@@ -1,27 +1,13 @@
 fileFormatVersion: 2
-guid: 640a36e4cef084ac49947b13829ae22a
+guid: a1bae112b95c3924388cf90a1c670d85
+timeCreated: 1556569704
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
-  fileIDToRecycleName:
-    100000: Camera
-    100002: //RootNode
-    100004: Sphere
-    100006: Sun
-    400000: Camera
-    400002: //RootNode
-    400004: Sphere
-    400006: Sun
-    2000000: Camera
-    2100000: ghost
-    2300000: Sphere
-    2300002: //RootNode
-    3300000: Sphere
-    3300002: //RootNode
-    4300000: Sphere
-    10800000: Sun
+  fileIDToRecycleName: {}
   externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -52,10 +38,10 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 0
+    importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -93,7 +79,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
