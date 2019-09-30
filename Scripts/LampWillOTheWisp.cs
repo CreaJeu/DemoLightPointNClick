@@ -8,6 +8,8 @@ public class LampWillOTheWisp : MonoBehaviour
     protected Vector3 currSpeed;
     protected Vector3 newTarget;
     protected Vector3 oldTarget;
+    protected Vector3 localPosition;
+    protected bool followsPlayer;
 
     public Vector3 middle;
     public Vector3 range;
@@ -50,12 +52,16 @@ public class LampWillOTheWisp : MonoBehaviour
         newTarget.x = x;
         newTarget.y = y;
         newTarget.z = z;
+
+        newTarget += player.transform.position;
     }
 
     void Start()
     {
         currSpeed = Vector3.zero;
         acceleration = Vector3.zero;
+        localPosition = new Vector3(0, 0, 0);
+        followsPlayer = false;
         timeTillRand = -1;
         if(middle == Vector3.zero)
         {
@@ -66,25 +72,58 @@ public class LampWillOTheWisp : MonoBehaviour
 
     public void setPlayerAsTarget()
     {
-        transform.SetParent(player.transform);
+        followsPlayer = true;
+        middle.x = 0;
+        middle.y = 2;
+        middle.z = 0;
+
+        range.x = 2;
+        range.y = 2;
+        range.z = 2;
+
+        newTarget = transform.position;
+        timeTillRand = 0;
     }
 
     void Update()
     {
-        float dt = Time.deltaTime;
-        if (timeTillRand <= 0)
+        if (followsPlayer)
         {
-            oldTarget = transform.localPosition;
-            rechooseTargetRd();
-            timeTillRand = Vector3.Distance(oldTarget, newTarget) / getSpeed();
-            Debug.Log("Time till rand: " + timeTillRand);
-            Vector3 gap = newTarget - oldTarget;
-            acceleration = (-1 / (timeTillRand * timeTillRand)) * (timeTillRand * currSpeed - gap);
-        }
+            float dt = Time.deltaTime;
 
-        currSpeed += acceleration * dt;
-        transform.localPosition += currSpeed * dt;
-        transform.rotation = Quaternion.identity;
-        timeTillRand -= dt;
+            if (timeTillRand <= 0)
+            {
+                oldTarget = newTarget;
+                rechooseTargetRd();
+                timeTillRand = Vector3.Distance(oldTarget, newTarget) / getSpeed();
+                Vector3 gap = newTarget - oldTarget;
+                Debug.Log(newTarget);
+                acceleration = (-1 / (timeTillRand * timeTillRand)) * (timeTillRand * currSpeed - gap);
+            }
+
+            currSpeed += acceleration * dt;
+            //localPosition += currSpeed * dt;
+            transform.position += currSpeed * dt;
+            //transform.position = localPosition + player.transform.position;
+            //transform.rotation = Quaternion.identity;
+            timeTillRand -= dt;
+        }
+        else
+        {
+            float dt = Time.deltaTime;
+            if (timeTillRand <= 0)
+            {
+                oldTarget = transform.localPosition;
+                rechooseTargetRd();
+                timeTillRand = Vector3.Distance(oldTarget, newTarget) / getSpeed();
+                Vector3 gap = newTarget - oldTarget;
+                acceleration = (-1 / (timeTillRand * timeTillRand)) * (timeTillRand * currSpeed - gap);
+            }
+
+            currSpeed += acceleration * dt;
+            transform.localPosition += currSpeed * dt;
+            //transform.rotation = Quaternion.identity;
+            timeTillRand -= dt;
+        }
     }
 }

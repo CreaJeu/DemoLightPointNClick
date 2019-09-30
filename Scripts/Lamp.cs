@@ -18,7 +18,7 @@ public class Lamp : PointNClickable
         if (wospObject.activeSelf)
         {
             lampWOTW.setPlayerAsTarget();
-            lampWOTW.range = new Vector3(5,5,5);
+            lampWOTW.range = new Vector3(0.1f,0.1f,0.1f);
             wospObject.transform.localPosition = Vector3.zero;
             lampWOTW.speed = 5;
             Debug.Log("Set player as target");
