@@ -77,6 +77,7 @@ public class LampWillOTheWisp : MonoBehaviour
             oldTarget = transform.localPosition;
             rechooseTargetRd();
             timeTillRand = Vector3.Distance(oldTarget, newTarget) / getSpeed();
+            Debug.Log("Time till rand: " + timeTillRand);
             Vector3 gap = newTarget - oldTarget;
             acceleration = (-1 / (timeTillRand * timeTillRand)) * (timeTillRand * currSpeed - gap);
         }
