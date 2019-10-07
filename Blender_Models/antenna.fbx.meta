@@ -9,17 +9,22 @@ ModelImporter:
     100002: antenna
     100004: Camera
     100006: Light
+    100008: Cylinder
     400000: //RootNode
     400002: antenna
     400004: Camera
     400006: Light
+    400008: Cylinder
     2000000: Camera
     2100000: Material
     2300000: antenna
     2300002: //RootNode
+    2300004: Cylinder
     3300000: antenna
     3300002: //RootNode
+    3300004: Cylinder
     4300000: antenna
+    4300002: Cylinder
     10800000: Light
   externalObjects: {}
   materials:
