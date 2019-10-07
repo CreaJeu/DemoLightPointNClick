@@ -8,7 +8,8 @@ public class LampWillOTheWisp : MonoBehaviour
     protected Vector3 currSpeed;
     protected Vector3 newTarget;
     protected Vector3 oldTarget;
-    protected Vector3 localPosition;
+    //protected Vector3 localPosition;
+    protected Vector3 destinationPicked;
     protected bool followsPlayer;
 
     public Vector3 middle;
@@ -53,19 +54,23 @@ public class LampWillOTheWisp : MonoBehaviour
         newTarget.y = y;
         newTarget.z = z;
 
-        newTarget += player.transform.position;
+        if (followsPlayer)
+        {
+            destinationPicked = DestinationPicker.destination;
+            newTarget += destinationPicked;
+        }
     }
 
     void Start()
     {
         currSpeed = Vector3.zero;
         acceleration = Vector3.zero;
-        localPosition = new Vector3(0, 0, 0);
+        //localPosition = new Vector3(0, 0, 0);
         followsPlayer = false;
         timeTillRand = -1;
         if(middle == Vector3.zero)
         {
-            middle = transform.localPosition;
+            middle = transform.position;
         }
     }
 
@@ -73,57 +78,26 @@ public class LampWillOTheWisp : MonoBehaviour
     public void setPlayerAsTarget()
     {
         followsPlayer = true;
-        middle.x = 0;
-        middle.y = 2;
-        middle.z = 0;
-
-        range.x = 2;
-        range.y = 2;
-        range.z = 2;
-
-        newTarget = transform.position;
+        //middle = ... => cf. Lamp.Interact()
         timeTillRand = 0;
     }
 
     void Update()
     {
-        if (followsPlayer)
+        float dt = Time.deltaTime;
+        // changement de cible
+        if (timeTillRand <= 0 || (followsPlayer && destinationPicked != DestinationPicker.destination))
         {
-            float dt = Time.deltaTime;
-
-            if (timeTillRand <= 0)
-            {
-                oldTarget = newTarget;
-                rechooseTargetRd();
-                timeTillRand = Vector3.Distance(oldTarget, newTarget) / getSpeed();
-                Vector3 gap = newTarget - oldTarget;
-                Debug.Log(newTarget);
-                acceleration = (-1 / (timeTillRand * timeTillRand)) * (timeTillRand * currSpeed - gap);
-            }
-
-            currSpeed += acceleration * dt;
-            //localPosition += currSpeed * dt;
-            transform.position += currSpeed * dt;
-            //transform.position = localPosition + player.transform.position;
-            //transform.rotation = Quaternion.identity;
-            timeTillRand -= dt;
+            oldTarget = transform.position;
+            rechooseTargetRd();
+            timeTillRand = Vector3.Distance(oldTarget, newTarget) / getSpeed();
+            Vector3 gap = newTarget - oldTarget;
+            acceleration = (-1 / (timeTillRand * timeTillRand)) * (timeTillRand * currSpeed - gap);
         }
-        else
-        {
-            float dt = Time.deltaTime;
-            if (timeTillRand <= 0)
-            {
-                oldTarget = transform.localPosition;
-                rechooseTargetRd();
-                timeTillRand = Vector3.Distance(oldTarget, newTarget) / getSpeed();
-                Vector3 gap = newTarget - oldTarget;
-                acceleration = (-1 / (timeTillRand * timeTillRand)) * (timeTillRand * currSpeed - gap);
-            }
 
-            currSpeed += acceleration * dt;
-            transform.localPosition += currSpeed * dt;
-            //transform.rotation = Quaternion.identity;
-            timeTillRand -= dt;
-        }
+        currSpeed += acceleration * dt;
+        transform.position += currSpeed * dt;
+        //transform.rotation = Quaternion.identity;
+        timeTillRand -= dt;
     }
 }

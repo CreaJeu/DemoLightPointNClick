@@ -14,14 +14,20 @@ public class Lamp : PointNClickable
 
     public override void Interact()
     {
-        Debug.Log("Interact with lamp");
+        //Debug.Log("Interact with lamp");
         if (wospObject.activeSelf)
         {
             lampWOTW.setPlayerAsTarget();
-            lampWOTW.range = new Vector3(0.1f,0.1f,0.1f);
-            wospObject.transform.localPosition = Vector3.zero;
-            lampWOTW.speed = 5;
-            Debug.Log("Set player as target");
+            lampWOTW.middle.x = 0;
+            lampWOTW.middle.y = 3;
+            lampWOTW.middle.z = 0;
+
+            lampWOTW.range.x = 3;
+            lampWOTW.range.y = 2;
+            lampWOTW.range.z = 4;
+
+            lampWOTW.speed = 9;
+            //Debug.Log("Set player as target");
         }
     }
 }
