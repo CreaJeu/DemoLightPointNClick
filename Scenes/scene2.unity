@@ -585,6 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wospObject: {fileID: 1924967393}
+  nbWospsNeeded: 1
 --- !u!1 &215857240
 GameObject:
   m_ObjectHideFlags: 0
@@ -2685,6 +2686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wospObject: {fileID: 1486313186}
+  nbWospsNeeded: 0
 --- !u!64 &1505840921
 MeshCollider:
   m_ObjectHideFlags: 0

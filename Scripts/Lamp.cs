@@ -6,17 +6,21 @@ public class Lamp : PointNClickable
 {
     private WillOTheWisp lampWOTW;
     public GameObject wospObject;
+    private static int nbWosps = 0;
+    public int nbWospsNeeded;
 
     void Start()
     {
-        lampWOTW = wospObject.GetComponent<WillOTheWisp>();    
+        lampWOTW = wospObject.GetComponent<WillOTheWisp>();
     }
 
     public override void Interact()
     {
         //Debug.Log("Interact with lamp");
-        if (wospObject.activeSelf)
+        if (wospObject.activeSelf && nbWosps >= nbWospsNeeded)
         {
+            nbWosps++;
+
             lampWOTW.setPlayerAsTarget();
             lampWOTW.middle.x = 0;
             lampWOTW.middle.y = 3;
