@@ -8,7 +8,6 @@ public class LampWillOTheWisp : MonoBehaviour
     protected Vector3 currSpeed;
     protected Vector3 newTarget;
     protected Vector3 oldTarget;
-    //protected Vector3 localPosition;
     protected Vector3 destinationPicked;
     protected bool followsPlayer;
 
@@ -65,13 +64,12 @@ public class LampWillOTheWisp : MonoBehaviour
     {
         currSpeed = Vector3.zero;
         acceleration = Vector3.zero;
-        //localPosition = new Vector3(0, 0, 0);
-        followsPlayer = false;
         timeTillRand = -1;
         if(middle == Vector3.zero)
         {
             middle = transform.position;
         }
+        followsPlayer = false;
     }
 
 

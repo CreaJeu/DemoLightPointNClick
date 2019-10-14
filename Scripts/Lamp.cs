@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Lamp : PointNClickable
 {
-    private LampWillOTheWisp lampWOTW;
+    private WillOTheWisp lampWOTW;
     public GameObject wospObject;
 
     void Start()
     {
-        lampWOTW = wospObject.GetComponent<LampWillOTheWisp>();    
+        lampWOTW = wospObject.GetComponent<WillOTheWisp>();    
     }
 
     public override void Interact()
