@@ -6,12 +6,13 @@ public class DeadTree : ChangeScene
     public GameObject[] wotw;
     public AnimationTransform animationTransform;
     public float timeUntilFall;
+	public AudioSource successSFX;
 
     Vector3 rangeWOTW = new Vector3(2, 2, 2);
 
     bool waitingToFall = false;
 
-    public override void Interact()
+	public override AudioSource Interact()
     {
         base.Interact();
         Debug.Log("Interact with dead tree");
@@ -37,7 +38,9 @@ public class DeadTree : ChangeScene
                 w.GetComponent<WillOTheWisp>().range = rangeWOTW;
             }
             waitingToFall = true;
+			return successSFX;
         }
+		return null;
     }
 
     public void Update()

@@ -8,13 +8,14 @@ public class Lamp : PointNClickable
     public GameObject wospObject;
     private static int nbWosps = 0;
     public int nbWospsNeeded;
+	public AudioSource successSFX;
 
     void Start()
     {
         lampWOTW = wospObject.GetComponent<WillOTheWisp>();
     }
 
-    public override void Interact()
+	public override AudioSource Interact()
     {
         //Debug.Log("Interact with lamp");
         if (wospObject.activeSelf && nbWosps >= nbWospsNeeded)
@@ -32,6 +33,8 @@ public class Lamp : PointNClickable
 
             lampWOTW.speed = 9;
             //Debug.Log("Set player as target");
+			return successSFX;
         }
+		return null;
     }
 }
