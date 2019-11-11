@@ -6,8 +6,6 @@ public class Dish : PointNClickable
     public AnimationTransform animationTransform;
     public AudioSource successSFX;
 
-    bool waitingToFall = false;
-
     public override AudioSource Interact()
     {
         if (animationTransform.state == AnimationTransform.State.BEFORE)

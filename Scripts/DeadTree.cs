@@ -15,6 +15,10 @@ public class DeadTree : ChangeScene
 	public override AudioSource Interact()
     {
         base.Interact();
+		if (waitingToFall)
+		{
+			return null;
+		}
         Debug.Log("Interact with dead tree");
         bool isAllWOTWActive = true;
         foreach(GameObject w in wotw)
