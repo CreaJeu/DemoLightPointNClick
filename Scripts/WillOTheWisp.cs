@@ -10,6 +10,7 @@ public class WillOTheWisp : MonoBehaviour
     protected Vector3 oldTarget;
     protected Vector3 destinationPicked;
     protected bool followsPlayer;
+	protected SpriteRenderer rendererComponent;
 
     public Vector3 middle;
     public Vector3 range;
@@ -72,6 +73,8 @@ public class WillOTheWisp : MonoBehaviour
             middle = transform.position;
         }
         followsPlayer = false;
+
+		rendererComponent = GetComponent<SpriteRenderer> ();
 	}
 
     public void setPlayerAsTarget()
@@ -84,6 +87,20 @@ public class WillOTheWisp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		//hide because other scene?
+		if((!followsPlayer) &&
+			rendererComponent.enabled &&
+			ChangeScene.currentSceneName != gameObject.scene.name)
+		{
+			rendererComponent.enabled = false;
+		}
+		else if((!rendererComponent.enabled) &&
+			(followsPlayer || ChangeScene.currentSceneName == gameObject.scene.name)
+			)
+		{
+			rendererComponent.enabled = true;
+		}
+
         float dt = Time.deltaTime;
         // changement de cible
         if (timeTillRand <= 0 || (followsPlayer && destinationPicked != DestinationPicker.destination))
