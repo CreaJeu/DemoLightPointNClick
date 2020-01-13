@@ -19,7 +19,7 @@ public class DeadTree : ChangeScene
 		{
 			return null;
 		}
-        Debug.Log("Interact with dead tree");
+        // Debug.Log("Interact with dead tree");
         bool isAllWOTWActive = true;
         foreach(GameObject w in wotw)
         {
@@ -33,7 +33,7 @@ public class DeadTree : ChangeScene
 
         if (isAllWOTWActive)
         {
-            Debug.Log("Changed will of the wisps parent to dead tree");
+            // Debug.Log("Changed will of the wisps parent to dead tree");
             foreach (GameObject w in wotw)
             {
                 w.transform.SetParent(this.transform);
