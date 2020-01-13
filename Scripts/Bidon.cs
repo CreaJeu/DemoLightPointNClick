@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bidon : PointNClickable {
-    public override void Interact()
+	public override AudioSource Interact()
     {
         Debug.Log("interaction with bidon");
+		return null;
     }
 }

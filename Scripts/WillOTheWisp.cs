@@ -8,6 +8,9 @@ public class WillOTheWisp : MonoBehaviour
     protected Vector3 currSpeed;
     protected Vector3 newTarget;
     protected Vector3 oldTarget;
+    protected Vector3 destinationPicked;
+    protected bool followsPlayer;
+	protected SpriteRenderer rendererComponent;
 
     public Vector3 middle;
     public Vector3 range;
@@ -16,9 +19,18 @@ public class WillOTheWisp : MonoBehaviour
     protected Vector3 posMin;
     protected Vector3 posMax;
 
+    public Player player;
+
+    public static GameObject wotwBigBig;
+
     protected float getSpeed()
     {
         return speed;
+    }
+
+    public bool isFollowsPlayer()
+    {
+        return followsPlayer;
     }
 
     Vector3 getPosMin()
@@ -48,6 +60,12 @@ public class WillOTheWisp : MonoBehaviour
         newTarget.x = x;
         newTarget.y = y;
         newTarget.z = z;
+
+        if (followsPlayer)
+        {
+            destinationPicked = DestinationPicker.destination;
+            newTarget += destinationPicked;
+        }
     }
 
 	// Use this for initialization
@@ -58,20 +76,51 @@ public class WillOTheWisp : MonoBehaviour
         timeTillRand = -1;
         if(middle == Vector3.zero)
         {
+            Debug.Log("enter if");
             middle = transform.position;
+        }
+        followsPlayer = false;
+
+		rendererComponent = GetComponent<SpriteRenderer> ();
+
+        //specific for bigbig
+        if(gameObject.name == "WOTW_bigbig")
+        {
+            wotwBigBig = gameObject;
+            gameObject.SetActive(false);
         }
 	}
 
-	// Update is called once per frame
-	void Update()
+    public void setPlayerAsTarget()
     {
+        followsPlayer = true;
+        //middle = ... => cf. Lamp.Interact()
+        timeTillRand = 0;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+		//hide because other scene?
+		if((!followsPlayer) &&
+			rendererComponent.enabled &&
+			ChangeScene.currentSceneName != gameObject.scene.name)
+		{
+			rendererComponent.enabled = false;
+		}
+		else if((!rendererComponent.enabled) &&
+			(followsPlayer || ChangeScene.currentSceneName == gameObject.scene.name)
+			)
+		{
+			rendererComponent.enabled = true;
+		}
+
         float dt = Time.deltaTime;
         // changement de cible
-        if (timeTillRand <= 0)
+        if (timeTillRand <= 0 || (followsPlayer && destinationPicked != DestinationPicker.destination))
         {
             oldTarget = transform.position;
             rechooseTargetRd();
-            // Debug.Log("changement de cible " + newTarget.x + " " + newTarget.y + " " + newTarget.z);
             timeTillRand = Vector3.Distance(oldTarget, newTarget) / getSpeed();
             Vector3 gap = newTarget - oldTarget;
             acceleration = (-1 / (timeTillRand * timeTillRand)) * (timeTillRand * currSpeed - gap);
@@ -79,7 +128,7 @@ public class WillOTheWisp : MonoBehaviour
 
         currSpeed += acceleration * dt;
         transform.position += currSpeed * dt;
-        transform.rotation = Quaternion.identity;
+        //transform.rotation = Quaternion.identity;
         timeTillRand -= dt;
 	}
 }

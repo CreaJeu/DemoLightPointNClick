@@ -4,24 +4,38 @@ using UnityEngine;
 
 public class Lamp : PointNClickable
 {
-    private LampWillOTheWisp lampWOTW;
+    private WillOTheWisp lampWOTW;
     public GameObject wospObject;
+    public static int nbWosps = 0;
+    public int nbWospsNeeded;
+	public AudioSource successSFX;
 
     void Start()
     {
-        lampWOTW = wospObject.GetComponent<LampWillOTheWisp>();    
+        lampWOTW = wospObject.GetComponent<WillOTheWisp>();
     }
 
-    public override void Interact()
+	public override AudioSource Interact()
     {
-        Debug.Log("Interact with lamp");
-        if (wospObject.activeSelf)
+        //Debug.Log("Interact with lamp");
+        if (wospObject.activeSelf && nbWosps == nbWospsNeeded)
         {
+            nbWosps++;
+
             lampWOTW.setPlayerAsTarget();
-            lampWOTW.range = new Vector3(5,5,5);
-            wospObject.transform.localPosition = Vector3.zero;
-            lampWOTW.speed = 5;
-            Debug.Log("Set player as target");
+            lampWOTW.middle.x = 0;
+            lampWOTW.middle.y = 3;
+            lampWOTW.middle.z = 0;
+
+            lampWOTW.range.x = 3;
+            lampWOTW.range.y = 2;
+            lampWOTW.range.z = 4;
+
+            lampWOTW.speed = 9;
+            //Debug.Log("Set player as target");
+
+			return successSFX;
         }
+		return null;
     }
 }

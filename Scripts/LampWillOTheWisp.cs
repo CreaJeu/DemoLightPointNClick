@@ -8,6 +8,8 @@ public class LampWillOTheWisp : MonoBehaviour
     protected Vector3 currSpeed;
     protected Vector3 newTarget;
     protected Vector3 oldTarget;
+    protected Vector3 destinationPicked;
+    protected bool followsPlayer;
 
     public Vector3 middle;
     public Vector3 range;
@@ -50,6 +52,12 @@ public class LampWillOTheWisp : MonoBehaviour
         newTarget.x = x;
         newTarget.y = y;
         newTarget.z = z;
+
+        if (followsPlayer)
+        {
+            destinationPicked = DestinationPicker.destination;
+            newTarget += destinationPicked;
+        }
     }
 
     void Start()
@@ -59,22 +67,26 @@ public class LampWillOTheWisp : MonoBehaviour
         timeTillRand = -1;
         if(middle == Vector3.zero)
         {
-            middle = transform.localPosition;
+            middle = transform.position;
         }
+        followsPlayer = false;
     }
 
 
     public void setPlayerAsTarget()
     {
-        transform.SetParent(player.transform);
+        followsPlayer = true;
+        //middle = ... => cf. Lamp.Interact()
+        timeTillRand = 0;
     }
 
     void Update()
     {
         float dt = Time.deltaTime;
-        if (timeTillRand <= 0)
+        // changement de cible
+        if (timeTillRand <= 0 || (followsPlayer && destinationPicked != DestinationPicker.destination))
         {
-            oldTarget = transform.localPosition;
+            oldTarget = transform.position;
             rechooseTargetRd();
             timeTillRand = Vector3.Distance(oldTarget, newTarget) / getSpeed();
             Vector3 gap = newTarget - oldTarget;
@@ -82,8 +94,8 @@ public class LampWillOTheWisp : MonoBehaviour
         }
 
         currSpeed += acceleration * dt;
-        transform.localPosition += currSpeed * dt;
-        transform.rotation = Quaternion.identity;
+        transform.position += currSpeed * dt;
+        //transform.rotation = Quaternion.identity;
         timeTillRand -= dt;
     }
 }

@@ -5,10 +5,16 @@ public class Grave : PointNClickable
 {
     // WillOTheWhisp
     public WillOTheWisp wotw; 
+	public AudioSource successSFX;
 
-    public override void Interact() 
+	public override AudioSource Interact() 
     {
         Debug.Log("Interaction with grave");
-        wotw.gameObject.SetActive(true);
+		if (!wotw.gameObject.activeSelf)
+		{
+			wotw.gameObject.SetActive(true);
+			return successSFX;
+		}
+		return null;
     }
 }
