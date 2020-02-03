@@ -20,6 +20,7 @@ public class Dish : PointNClickable
             if (!WillOTheWisp.wotwBigBig.activeSelf)
             {
                 WillOTheWisp.wotwBigBig.SetActive(true);
+                Debug.Log("Big WOTW active");
                 return successSFX;
             }
             // big wotw follows
@@ -27,14 +28,17 @@ public class Dish : PointNClickable
             {
                 Debug.Log("NB WOSPS: 3");
                 animationTransform.state = AnimationTransform.State.MOVING;
+                Debug.Log("Dish falls");
                 return successSFX;
             }
 
             Debug.Log("NB WOSPS: " + Lamp.nbWosps);
+            Debug.Log("Dish does not move");
             return null;
         }
         else
         {
+            Debug.Log("Nothing happens, dish already fallen");
             return null;
         }
     }
