@@ -14,6 +14,8 @@ public class DeadTree : ChangeScene
 
 	public override AudioSource Interact()
     {
+        // Debug.Log("Dead Tree interact");
+
         base.Interact();
 		if (waitingToFall)
 		{
