@@ -76,7 +76,6 @@ public class WillOTheWisp : MonoBehaviour
         timeTillRand = -1;
         if(middle == Vector3.zero)
         {
-            Debug.Log("enter if");
             middle = transform.position;
         }
         followsPlayer = false;
@@ -128,7 +127,7 @@ public class WillOTheWisp : MonoBehaviour
 
         currSpeed += acceleration * dt;
         transform.position += currSpeed * dt;
-        //transform.rotation = Quaternion.identity;
+        transform.rotation = Quaternion.identity;
         timeTillRand -= dt;
 	}
 }
